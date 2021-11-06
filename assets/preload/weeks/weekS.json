@@ -1,0 +1,48 @@
+{
+	"songs": [
+		[
+			"tweet",
+			"splats",
+			[
+				200,
+				95,
+				0
+			]
+		],
+		[
+			"bonk",
+			"splats",
+			[
+				200,
+				95,
+				0
+			]
+		],
+		[
+			"splats",
+			"splats",
+			[
+				200,
+				95,
+				0
+			]
+		]
+	],
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekCharacters": [
+		"splat",
+		"bf",
+		"gf"
+	],
+	"storyName": "Battle For A Hotdog",
+	"weekName": "Vs. Splats",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": false,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}
