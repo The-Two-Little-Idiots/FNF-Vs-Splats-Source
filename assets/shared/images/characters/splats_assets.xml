@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Splats_Assets.png">
+<TextureAtlas imagePath="splats_assets2.png">
 	<!-- Created with Adobe Animate version 19.2.1.408 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="Dad Sing Note DOWN0000" x="0" y="0" width="436" height="428"/>
@@ -129,4 +129,17 @@
 	<SubTexture name="Dad idle dance0010" x="423" y="1344" width="423" height="442"/>
 	<SubTexture name="Dad idle dance0011" x="423" y="1344" width="423" height="442"/>
 	<SubTexture name="Dad idle dance0012" x="423" y="1344" width="423" height="442"/>
+	<SubTexture name="bonkanim0000" x="846" y="1344" width="498" height="550"/>
+	<SubTexture name="bonkanim0001" x="846" y="1344" width="498" height="550"/>
+	<SubTexture name="bonkanim0002" x="1344" y="1344" width="498" height="550"/>
+	<SubTexture name="bonkanim0003" x="1344" y="1344" width="498" height="550"/>
+	<SubTexture name="bonkanim0004" x="0" y="1894" width="498" height="550"/>
+	<SubTexture name="bonkanim0005" x="0" y="1894" width="498" height="550"/>
+	<SubTexture name="bonkanim0006" x="498" y="1894" width="498" height="550"/>
+	<SubTexture name="bonkanim0007" x="498" y="1894" width="498" height="550"/>
+	<SubTexture name="bonkanim0008" x="996" y="1894" width="498" height="550"/>
+	<SubTexture name="bonkanim0009" x="996" y="1894" width="498" height="550"/>
+	<SubTexture name="bonkanim0010" x="996" y="1894" width="498" height="550"/>
+	<SubTexture name="bonkanim0011" x="996" y="1894" width="498" height="550"/>
+	<SubTexture name="bonkanim0012" x="996" y="1894" width="498" height="550"/>
 </TextureAtlas>

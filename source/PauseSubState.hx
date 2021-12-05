@@ -18,7 +18,7 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Continue', 'Restart Song', 'Change Difficulty', 'Options','Toggle not die Mode', 'Botplay', 'Exit to Freeplay'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Toggle not die Mode', 'Botplay', 'Exit to Freeplay'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 
@@ -153,7 +153,7 @@ class PauseSubState extends MusicBeatSubstate
 
 			switch (daSelected)
 			{
-				case "Continue":
+				case "Resume":
 					close();
 				case 'Change Difficulty':
 					menuItems = difficultyChoices;

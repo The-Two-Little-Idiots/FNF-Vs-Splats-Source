@@ -1,0 +1,46 @@
+{
+	"dialogue": [
+		{
+			"speed": 0.05,
+			"portrait": "john",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "hel o"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "hell o"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "john",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "no way is that bf from the popular rythem game friday nght funkin created by ninjamuffin99\\nphantomarcade kawaiisprite and evilsk8r"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "yes"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "excited",
+			"text": "idiot"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "john",
+			"boxState": "normal",
+			"expression": "pissed",
+			"text": "shut"
+		}
+	]
+}

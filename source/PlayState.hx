@@ -62,15 +62,15 @@ class PlayState extends MusicBeatState
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['Absoulote Dogwater', 0.2], //From 0% to 19%
-		['Shit', 0.4], //From 20% to 39%
-		['Bad', 0.5], //From 40% to 49%
-		['Bruh', 0.6], //From 50% to 59%
-		['Meh', 0.69], //From 60% to 68%
-		['Nice', 0.7], //69%
-		['Good', 0.8], //From 70% to 79%
-		['Great', 0.9], //From 80% to 89%
-		['Sick!', 1], //From 90% to 99%
-		['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
+		['Dogwater', 0.4], //From 20% to 39%
+		['bruj', 0.5], //From 40% to 49%
+		['get good', 0.6], //From 50% to 59%
+		['lmao bad', 0.69], //From 60% to 68%
+		['skill issue :/', 0.7], //69%
+		['splat says hi', 0.8], //From 70% to 79%
+		['cool', 0.9], //From 80% to 89%
+		['very cool', 1], //From 90% to 99%
+		['be my friend pls', 1] //The value on this one isn't used actually, since Perfect is always "1"
 	];
 	
 	#if (haxe >= "4.0.0")
@@ -140,6 +140,8 @@ class PlayState extends MusicBeatState
 
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
+
+	private var floatshit:Float = 0;
 
 	private var gfSpeed:Int = 1;
 	private var health:Float = 1;
@@ -353,6 +355,9 @@ class PlayState extends MusicBeatState
 					stand.updateHitbox();
 					add(stand);
 				}
+			case 'jstage': //not tso secret song thing
+				var jstage:BGSprite = new BGSprite('john', -480, -100, 0.9, 0.9);
+				add(jstage);
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
@@ -1841,6 +1846,7 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		floatshit += 0.1;
 		#if !debug
 		perfectMode = false;
 		#end
@@ -2030,6 +2036,10 @@ class PlayState extends MusicBeatState
 			#if desktop
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
+		}
+
+		if (dad.curCharacter == "john"){
+			dad.y += Math.sin(floatshit);
 		}
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
@@ -2270,7 +2280,7 @@ class PlayState extends MusicBeatState
 								animToPlay = 'singUP';
 								if (SONG.player2 == 'splats')
 								{
-									health -= 0.01;
+									health -= 0.02;
 								}
 							case 3:
 								animToPlay = 'singRIGHT';

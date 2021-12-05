@@ -27,9 +27,16 @@ class MainMenuState extends MusicBeatState
 	public static var psychEngineVersion:String = '0.4'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
+	var iconJohn:FlxSprite;
+
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
+	private var iconStory:FlxSprite;
+	private var iconFreeplay:FlxSprite;
+	private var iconAwards:FlxSprite;
+	private var iconCredits:FlxSprite;
+	private var iconOptions:FlxSprite;
 	
 	var optionShit:Array<String> = ['story_mode', 'freeplay', #if ACHIEVEMENTS_ALLOWED 'awards', #end 'credits', #if !switch #end 'options'];
 
@@ -66,6 +73,15 @@ class MainMenuState extends MusicBeatState
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
+		var blackMenu:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('blackMenu'));
+		blackMenu.x += 45;
+		blackMenu.y += -28;
+		blackMenu.setGraphicSize(Std.int(blackMenu.width * 1.220));
+		blackMenu.scrollFactor.set(0, yScroll);
+		blackMenu.updateHitbox();
+		blackMenu.antialiasing = ClientPrefs.globalAntialiasing;
+		add(blackMenu);
+
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
@@ -87,14 +103,15 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(1, (i * 142)  + offset);
+			var offset:Float = 95 - (Math.max(optionShit.length, 4) - 4) * 80;
+			var menuItem:FlxSprite = new FlxSprite(1, (i * 145)  + offset);
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 30);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 30);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
+			//menuItem.screenCenter(X);
+			menuItem.x += 80;
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 8) * 0.135;
 			if(optionShit.length < 6) scr = 0;
@@ -103,8 +120,28 @@ class MainMenuState extends MusicBeatState
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
 		}
-
+		
 		FlxG.camera.follow(camFollowPos, null, 1);
+
+		iconStory = new FlxSprite(500, -150).loadGraphic(Paths.image('menuicons/story'));
+		add(iconStory);
+		iconStory.visible = false;
+		
+		iconFreeplay = new FlxSprite(400, 50).loadGraphic(Paths.image('menuicons/freeplay'));
+		add(iconFreeplay);
+		iconFreeplay.visible = false;
+
+		iconCredits = new FlxSprite(450, 300).loadGraphic(Paths.image('menuicons/lol'));
+		add(iconCredits);
+		iconCredits.visible = false;
+
+		iconOptions = new FlxSprite(450, 450).loadGraphic(Paths.image('menuicons/options'));
+		add(iconOptions);
+		iconOptions.visible = false;
+
+		iconAwards = new FlxSprite(420, 200).loadGraphic(Paths.image('menuicons/awards'));
+		add(iconAwards);
+		iconAwards.visible = false;
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
@@ -151,8 +188,78 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
+
+
+
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 5.6, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
+
+		if (optionShit[curSelected] == 'story_mode')
+		{
+			changeItem(-1);
+			changeItem(1);
+
+			iconStory.updateHitbox();
+			iconStory.visible = true;
+		}
+		else
+		{
+			iconStory.visible = false;
+		}
+
+		if (optionShit[curSelected] == 'freeplay')
+		{
+			changeItem(-1);
+			changeItem(1);
+
+			iconFreeplay.updateHitbox();
+			iconFreeplay.visible = true;
+		}
+		else
+		{
+			iconFreeplay.visible = false;
+		}
+
+		if (optionShit[curSelected] == 'credits')
+		{
+			changeItem(-1);
+			changeItem(1);
+
+			iconCredits.updateHitbox();
+			iconCredits.visible = true;
+		}
+		else
+		{
+			iconCredits.visible = false;
+		}
+
+		if (optionShit[curSelected] == 'options')
+		{
+			changeItem(-1);
+			changeItem(1);
+
+			iconOptions.updateHitbox();
+			iconOptions.visible = true;
+		}
+		else
+		{
+			iconOptions.visible = false;
+		}
+
+		
+		if (optionShit[curSelected] == 'awards')
+		{
+			changeItem(-1);
+			changeItem(1);
+
+			iconAwards.updateHitbox();
+			iconAwards.visible = true;
+		}
+		else
+		{
+			iconAwards.visible = false;
+		}
+
 
 		if (!selectedSomethin)
 		{
@@ -232,7 +339,7 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			spr.screenCenter(X);
+			//spr.screenCenter(X);
 		});
 	}
 

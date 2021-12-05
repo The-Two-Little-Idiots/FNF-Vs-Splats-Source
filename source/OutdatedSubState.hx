@@ -18,7 +18,7 @@ class OutdatedSubState extends MusicBeatState
 		add(bg);
 		var ver = "v" + Application.current.meta.get('version');
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
-			"HEY! im to lazy to port this mod to a newer version\nso instead im gonna say that im not good at coding "
+			"HEY! im to lazy to port this mod to a newer version\n"
 			+ " - Cyan "
 			+ "Press Space to go to mod",
 			32);

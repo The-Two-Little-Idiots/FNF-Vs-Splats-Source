@@ -30,7 +30,7 @@ using StringTools;
 // TO DO: Redo the menu creation system for not being as dumb
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Notes', 'Controls', 'Preferences', 'Useless Button'];
+	var options:Array<String> = ['Notes', 'Controls', 'Preferences', 'J O H N'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -98,6 +98,18 @@ class OptionsState extends MusicBeatState
 
 				case 'Preferences':
 					openSubState(new PreferencesSubstate());
+				
+				case 'J O H N':
+
+					PlayState.SONG = Song.loadFromJson('potnonomicaphobia', 'potnonomicaphobia');
+					PlayState.isStoryMode = false;
+					PlayState.storyDifficulty = 1;
+					PlayState.storyWeek = 1;
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					new FlxTimer().start(0.5, function(tmr:FlxTimer)
+					{
+						LoadingState.loadAndSwitchState(new PlayState());
+					});
 			}
 		}
 	}
@@ -399,18 +411,19 @@ class ControlsSubstate extends MusicBeatSubstate {
 	private static var defaultKey:String = 'Reset to Default Keys';
 
 	var optionShit:Array<String> = [
-		'NOTES',
+		'INPUTS',
 		ClientPrefs.keyBinds[0][1],
 		ClientPrefs.keyBinds[1][1],
 		ClientPrefs.keyBinds[2][1],
 		ClientPrefs.keyBinds[3][1],
 		'',
-		'UI',
+		'MAIN MENU',
 		ClientPrefs.keyBinds[4][1],
 		ClientPrefs.keyBinds[5][1],
 		ClientPrefs.keyBinds[6][1],
 		ClientPrefs.keyBinds[7][1],
 		'',
+		'Other',
 		ClientPrefs.keyBinds[8][1],
 		ClientPrefs.keyBinds[9][1],
 		ClientPrefs.keyBinds[10][1],
@@ -664,7 +677,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 	private static var curSelected:Int = 0;
 	static var unselectableOptions:Array<String> = [
 		'GRAPHICS',
-		'GAMEPLAY'
+		'GAMEPLAY',
+		'MISC',
+		'WARNINGS'
 	];
 	static var noCheckbox:Array<String> = [
 		'Framerate',
@@ -676,6 +691,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Low Quality',
 		'Anti-Aliasing',
 		'Persistent Cached Data',
+		#if !mobile
+		'FPS Counter',
 		#if !html5
 		'Framerate', //Apparently 120FPS isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		#end
@@ -684,13 +701,13 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Middlescroll',
 		'Ghost Tapping',
 		'Note Delay',
+		'MISC',
 		'Note Splashes',
 		'Hide HUD',
 		'Hide Song Length',
+		'WARNINGS',
 		'Flashing Lights',
 		'Camera Zooms'
-		#if !mobile
-		,'FPS Counter'
 		#end
 	];
 
