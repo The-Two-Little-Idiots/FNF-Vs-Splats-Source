@@ -1846,7 +1846,7 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		floatshit += 0.1;
+		floatshit += 0.5;
 		#if !debug
 		perfectMode = false;
 		#end
