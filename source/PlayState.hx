@@ -340,20 +340,25 @@ class PlayState extends MusicBeatState
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
 
-
 				if(!ClientPrefs.lowQuality) {
 
 				}
-
 			case 'splat': //Week hahahahahahahahahahha -cyan
-				var splat:BGSprite = new BGSprite('splat', -600, -200, 0.9, 0.9);
+				var splat:BGSprite = new BGSprite('splatStage/BG', -600, -200, 0.9, 0.9);
 				add(splat);
+
+				//FlxG.bitmap.add(Paths.image('splatStage/BG'));
+				//FlxG.bitmap.add(Paths.image('splatStage/bushes'));
 
 				if(!ClientPrefs.lowQuality) {
 					stand = new BGSprite('hotdog', 1150, 225, 0.9, 0.6, ['hydrooo instance']);
 					stand.setGraphicSize(Std.int(stand.width * 0.50));
 					stand.updateHitbox();
 					add(stand);
+
+					var bush:BGSprite = new BGSprite('splatStage/bushes', -600, 400, 0.9, 0.9);
+					bush.updateHitbox();
+					add(bush);
 				}
 			case 'jstage': //not tso secret song thing
 				var jstage:BGSprite = new BGSprite('john', -480, -100, 0.9, 0.9);
@@ -876,7 +881,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
-		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
+		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY / CPU", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
@@ -1846,7 +1851,7 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		floatshit += 0.1;
+		floatshit += 0.08;
 		#if !debug
 		perfectMode = false;
 		#end
@@ -2270,9 +2275,17 @@ class PlayState extends MusicBeatState
 								{
 									health -= 0.01;
 								}
+								if (SONG.player2 == 'john')
+								{
+									health -= 0.01;
+								}
 							case 1:
 								animToPlay = 'singDOWN';
 								if (SONG.player2 == 'splats')
+								{
+									health -= 0.01;
+								}
+								if (SONG.player2 == 'john')
 								{
 									health -= 0.01;
 								}
@@ -2282,9 +2295,17 @@ class PlayState extends MusicBeatState
 								{
 									health -= 0.02;
 								}
+								if (SONG.player2 == 'john')
+								{
+									health -= 0.01;
+								}
 							case 3:
 								animToPlay = 'singRIGHT';
 								if (SONG.player2 == 'splats')
+								{
+									health -= 0.01;
+								}
+									if (SONG.player2 == 'john')
 								{
 									health -= 0.01;
 								}

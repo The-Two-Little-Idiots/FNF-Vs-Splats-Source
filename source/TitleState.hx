@@ -44,6 +44,9 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var logoSpr:FlxSprite;
 
+	var flashSprite:FlxSprite;
+	var code:Int = 0;
+	var songUnlock:Int = 0;
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
@@ -166,15 +169,25 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
+		var titleBG:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('titleBG'));
+		titleBG.antialiasing = ClientPrefs.globalAntialiasing;
+		titleBG.updateHitbox();
+		titleBG.screenCenter();
+		titleBG.visible = true;
+		add(titleBG);
+
 		logoBl = new FlxSprite(-150, -100);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
+		logoBl.x += 420;
+		logoBl.y += 150;
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
+		/*
 		swagShader = new ColorSwap();
 		if(!FlxG.save.data.psykaEasterEgg || !easterEggEnabled) {
 			gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
@@ -189,9 +202,7 @@ class TitleState extends MusicBeatState
 			gfDance.animation.addByIndices('danceLeft', 'psykaDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 			gfDance.animation.addByIndices('danceRight', 'psykaDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		}
-		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
-		add(gfDance);
-		gfDance.shader = swagShader.shader;
+		*/
 		add(logoBl);
 		//logoBl.shader = swagShader.shader;
 
@@ -201,6 +212,7 @@ class TitleState extends MusicBeatState
 		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
 		titleText.antialiasing = ClientPrefs.globalAntialiasing;
 		titleText.animation.play('idle');
+		titleText.x += 35;
 		titleText.updateHitbox();
 		// titleText.screenCenter(X);
 		add(titleText);
@@ -285,6 +297,40 @@ class TitleState extends MusicBeatState
 		}
 		#end
 
+		if (FlxG.keys.justPressed.J)
+			if (code == 0)
+				code = 1;
+			else
+				code == 0;
+		if (FlxG.keys.justPressed.O)
+			if (code == 1)
+				code = 2;
+			else
+				code == 0;
+		if (FlxG.keys.justPressed.H)
+			if (code == 2)
+				code = 3;
+			else
+				code == 0;
+		if (FlxG.keys.justPressed.N)
+			if (code == 3)
+				code = 4;
+			else
+				code == 0;
+		if (pressedEnter && !transitioning && skippedIntro && code == 4)
+		{
+			PlayState.SONG = Song.loadFromJson('potnonomicaphobia', 'potnonomicaphobia');
+			PlayState.isStoryMode = false;
+			PlayState.storyDifficulty = 1;
+			PlayState.storyWeek = 1;
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+			new FlxTimer().start(0.01, function(tmr:FlxTimer)
+			{
+				LoadingState.loadAndSwitchState(new PlayState());
+			});
+
+		}
+
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
 		if (gamepad != null)
@@ -314,6 +360,7 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
+
 					MusicBeatState.switchState(new MainMenuState());
 					closedState = true;
 				});
@@ -489,6 +536,9 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(logoSpr);
+			
+			FlxG.camera.zoom = 30; // ZOOOOM
+			FlxTween.tween(FlxG.camera, {zoom: 1}, 1.1, {ease: FlxEase.expoOut});
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);

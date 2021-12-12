@@ -15,8 +15,9 @@ local del2 = 0;
 local defaultNotePos = {};
 local spin = true;
 local arrowMoveX = 0;
-local arrowMoveY = 14;
+local arrowMoveY = 18;
 
+-- strumline setup
 function onSongStart()
     for i = 0,7 do 
         x = getPropertyFromGroup('strumLineNotes', i, 'x')
@@ -27,6 +28,32 @@ function onSongStart()
     end
 end
  
+-- oppenent screenshake note thing
+function opponentNoteHit(id,data,type,sus)
+
+	if type == 'No Animation' then
+
+		if data == 0 then
+			anim = 'singLEFT-dm'
+		end
+		if data == 1 then
+			anim = 'singDOWN-dm'
+		end
+		if data == 2 then
+			anim = 'singUP-dm'
+		end
+		if data == 3 then
+			anim = 'singRIGHT-dm'
+		end
+
+		triggerEvent('Play Animation',anim,'0')
+
+	else
+		triggerEvent('Screen Shake','0.1,0.005','')
+	end
+end
+
+
 function onUpdate(elapsed)
  
     -- modchart
@@ -40,6 +67,7 @@ function onUpdate(elapsed)
             setPropertyFromGroup('strumLineNotes', i, 'y', defaultNotePos[i + 1][2] + arrowMoveY * math.cos((currentBeat + i*0.25) * math.pi))
         end
     end
+    
 
     -- arrow camera move thing
 	if del > 0 then
@@ -112,6 +140,7 @@ function onUpdate(elapsed)
             end
         end
     else
+        -- camera vaule
         triggerEvent('Camera Follow Pos','','')
     end
 end

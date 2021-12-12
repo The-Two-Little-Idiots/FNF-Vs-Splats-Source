@@ -152,6 +152,11 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
+		FlxG.camera.zoom = 30;
+		bg.angle = 75;
+		FlxTween.tween(FlxG.camera, {zoom: 1}, 1.1, {ease: FlxEase.expoOut});
+		FlxTween.tween(bg, {angle: 0}, 1.1, {ease: FlxEase.expoOut});
+
 		// NG.core.calls.event.logEvent('swag').send();
 
 		changeItem();

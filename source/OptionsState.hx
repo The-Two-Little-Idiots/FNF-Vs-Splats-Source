@@ -30,7 +30,7 @@ using StringTools;
 // TO DO: Redo the menu creation system for not being as dumb
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Notes', 'Controls', 'Preferences', 'J O H N'];
+	var options:Array<String> = ['Notes', 'Controls', 'Preferences'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -99,8 +99,7 @@ class OptionsState extends MusicBeatState
 				case 'Preferences':
 					openSubState(new PreferencesSubstate());
 				
-				case 'J O H N':
-
+				case 'J O H N / unused':
 					PlayState.SONG = Song.loadFromJson('potnonomicaphobia', 'potnonomicaphobia');
 					PlayState.isStoryMode = false;
 					PlayState.storyDifficulty = 1;
