@@ -717,11 +717,11 @@ class PlayState extends MusicBeatState
 				resetFastCar();
 				add(fastCar);
 			
-			case 'schoolEvil':
-				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
-				add(evilTrail);
+			case 'splat':
+				var splatsTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
+				add(splatsTrail);
 		}
-
+		
 		add(gfGroup);
 
 		// Shitty layering but whatev it works LOL
